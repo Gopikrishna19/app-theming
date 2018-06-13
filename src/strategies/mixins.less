@@ -1,0 +1,63 @@
+.unmodularize() {
+  /*
+  @theme-1: ~".theme-1";
+  @theme-2: ~".theme-2";
+  @theme-3: ~".theme-3";
+   */
+  /*needed to escape css-modularizing, emulating the real life setting*/
+  @theme-1: ~":global(.theme-1)";
+  @theme-2: ~":global(.theme-2)";
+  @theme-3: ~":global(.theme-3)";
+}
+
+.primary-color(@property) {
+  .unmodularize();
+  @{theme-1} & {
+      @{property}: orange;
+  }
+  @{theme-2} & {
+      @{property}: green;
+  }
+  @{theme-3} & {
+      @{property}: yellow;
+  }
+}
+
+.secondary-color(@property) {
+  .unmodularize();
+  @{theme-1} & {
+      @{property}: black;
+  }
+  @{theme-2} & {
+      @{property}: yellow;
+  }
+  @{theme-3} & {
+      @{property}: black;
+  }
+}
+
+.active-color(@property) {
+  .unmodularize();
+  @{theme-1} & {
+      @{property}: white;
+  }
+  @{theme-2} & {
+      @{property}: black;
+  }
+  @{theme-3} & {
+      @{property}: red;
+  }
+}
+
+.scope a {
+  .primary-color(color);
+  .secondary-color(background-color);
+
+  &:hover {
+    .active-color(color);
+  }
+
+  &:after {
+    content: " using LESS mixins";
+  }
+}

@@ -1,0 +1,34 @@
+/*.theme-1 {*/
+/*needed to escape css-modularizing, emulating the real life setting*/
+:global(.theme-1) {
+    --active-color: white;
+    --primary-color: orange;
+    --secondary-color: black;
+}
+
+/*.theme-2 {*/
+:global(.theme-2) {
+    --active-color: black;
+    --primary-color: green;
+    --secondary-color: yellow;
+}
+
+/*.theme-3 {*/
+:global(.theme-3) {
+    --active-color: red;
+    --primary-color: yellow;
+    --secondary-color: black;
+}
+
+.scope a {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.scope a:hover {
+    color: var(--active-color);
+}
+
+.scope a:after {
+    content: " using pure css";
+}

@@ -1,0 +1,54 @@
+@function unmodularize($name) {
+  /*@return $name;*/
+  /*needed to escape css-modularizing, emulating the real life setting*/
+  @return ":global(#{$name})";
+}
+
+@mixin primary-color($property) {
+  #{unmodularize('.theme-1')} & {
+    #{$property}: orange;
+  }
+  #{unmodularize('.theme-2')} & {
+    #{$property}: green;
+  }
+  #{unmodularize('.theme-3')} & {
+    #{$property}: yellow;
+  }
+}
+
+@mixin secondary-color($property) {
+  #{unmodularize('.theme-1')} & {
+    #{$property}: black;
+  }
+  #{unmodularize('.theme-2')} & {
+    #{$property}: yellow;
+  }
+  #{unmodularize('.theme-3')} & {
+    #{$property}: black;
+  }
+}
+
+@mixin active-color($property) {
+  #{unmodularize('.theme-1')} & {
+    #{$property}: white;
+  }
+  #{unmodularize('.theme-2')} & {
+    #{$property}: black;
+  }
+  #{unmodularize('.theme-3')} & {
+    #{$property}: red;
+  }
+}
+
+.scope a {
+  @include primary-color(color);
+  @include secondary-color(background-color);
+
+  &:hover {
+    @include active-color(color);
+  }
+
+  &:after {
+    content: " using SCSS mixins";
+  }
+}

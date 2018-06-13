@@ -1,0 +1,52 @@
+/* baseline */
+
+@mixin primary-color($property) {
+  .theme-1 & {
+    #{$property}: orange;
+  }
+  .theme-2 & {
+    #{$property}: green;
+  }
+  .theme-3 & {
+    #{$property}: yellow;
+  }
+}
+
+@mixin secondary-color($property) {
+  .theme-1 & {
+    #{$property}: black;
+  }
+  .theme-2 & {
+    #{$property}: yellow;
+  }
+  .theme-3 & {
+    #{$property}: black;
+  }
+}
+
+@mixin active-color($property) {
+  .theme-1 & {
+    #{$property}: white;
+  }
+  .theme-2 & {
+    #{$property}: black;
+  }
+  .theme-3 & {
+    #{$property}: red;
+  }
+}
+
+/* usage */
+
+.scope a {
+  @include primary-color(color);
+  @include secondary-color(background-color);
+
+  &:hover {
+    @include active-color(color);
+  }
+
+  &:after {
+    content: " using SCSS mixins";
+  }
+}

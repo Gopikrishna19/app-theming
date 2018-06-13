@@ -1,0 +1,29 @@
+{
+  "name": "theming",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development parcel src/index.html",
+    "build": "rimraf dist && NODE_ENV=production parcel build src/index.html --no-minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.deere.com:gs89621/theming.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "8.6.2",
+    "less": "3.0.4",
+    "node-sass": "4.9.0",
+    "parcel-bundler": "1.8.1",
+    "postcss-modules": "1.1.0",
+    "prismjs": "1.14.0",
+    "rimraf": "2.6.2"
+  },
+  "dependencies": {
+    "react": "16.4.0",
+    "react-dom": "16.4.0"
+  }
+}

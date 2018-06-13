@@ -1,0 +1,55 @@
+/* baseline */
+
+$themes: (
+  theme-1: (
+    active-color: white,
+    primary-color: orange,
+    secondary-color: black
+  ),
+  theme-2: (
+    active-color: black,
+    primary-color: green,
+    secondary-color: yellow
+  ),
+  theme-3: (
+    active-color: red,
+    primary-color: yellow,
+    secondary-color: black
+  )
+);
+
+@mixin from-theme {
+  @each $theme, $map in $themes {
+    .#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $value in $map {
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function use($key) {
+  @return map-get($theme-map, $key);
+}
+
+/* usage */
+
+.scope a {
+  @include from-theme {
+    color: use(primary-color);
+    background-color: use(secondary-color);
+  }
+
+  &:hover {
+    @include from-theme {
+      color: use(active-color);
+    }
+  }
+
+  &:after {
+    content: " using higher order functions";
+  }
+}
