@@ -1,5 +1,3 @@
-/* baseline */
-
 $themes: (
   theme-1: (
     active-color: white,
@@ -33,23 +31,4 @@ $themes: (
 
 @function use($key) {
   @return map-get($theme-map, $key);
-}
-
-/* usage */
-
-.scope a {
-  @include from-theme {
-    color: use(primary-color);
-    background-color: use(secondary-color);
-  }
-
-  &:hover {
-    @include from-theme {
-      color: use(active-color);
-    }
-  }
-
-  &:after {
-    content: " using higher order functions";
-  }
 }

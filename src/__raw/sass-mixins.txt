@@ -1,5 +1,3 @@
-/* baseline */
-
 @mixin primary-color($property) {
   .theme-1 & {
     #{$property}: orange;
@@ -33,20 +31,5 @@
   }
   .theme-3 & {
     #{$property}: red;
-  }
-}
-
-/* usage */
-
-.scope a {
-  @include primary-color(color);
-  @include secondary-color(background-color);
-
-  &:hover {
-    @include active-color(color);
-  }
-
-  &:after {
-    content: " using SCSS mixins";
   }
 }

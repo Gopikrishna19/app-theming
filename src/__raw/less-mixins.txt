@@ -1,0 +1,23 @@
+.secondary-color(@property) {
+  .theme-1 & {
+      @{property}: black;
+  }
+  .theme-2 & {
+      @{property}: yellow;
+  }
+  .theme-3 & {
+      @{property}: black;
+  }
+}
+
+.active-color(@property) {
+  .theme-1 & {
+      @{property}: white;
+  }
+  .theme-2 & {
+      @{property}: black;
+  }
+  .theme-3 & {
+      @{property}: red;
+  }
+}

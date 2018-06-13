@@ -5,13 +5,13 @@ body {
 :global(.global-scope) a {
   display: block;
   padding: 10px;
-}
 
-a:link,
-a:visited,
-a:hover,
-a:focus {
-  text-decoration: none;
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
 }
 
 select {
@@ -20,6 +20,27 @@ select {
 }
 
 pre {
-  border: 1px solid #eee;
+  border: 1px solid #ccc;
   padding: 10px;
+}
+
+table {
+  margin-top: 25px;
+  width: 100%;
+}
+
+td {
+  vertical-align: top;
+
+  &:nth-child(2) {
+    width: 380px;
+  }
+
+  &:nth-child(3) {
+    width: 440px;
+  }
+}
+
+th {
+  text-align: left;
 }

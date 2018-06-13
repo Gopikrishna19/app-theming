@@ -1,0 +1,12 @@
+.scope a {
+  @include primary-color(color);
+  @include secondary-color(background-color);
+
+  &:hover {
+    @include active-color(color);
+  }
+
+  &:after {
+    content: " using SCSS mixins";
+  }
+}
