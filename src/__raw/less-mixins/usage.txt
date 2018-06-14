@@ -1,0 +1,12 @@
+.scope a {
+  .primary-color(color);
+  .secondary-color(background-color);
+
+  &:hover {
+    .active-color(color);
+  }
+
+  &:after {
+    content: " using LESS mixins";
+  }
+}

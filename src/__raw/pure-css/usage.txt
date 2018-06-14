@@ -1,0 +1,12 @@
+.scope a {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.scope a:hover {
+    color: var(--active-color);
+}
+
+.scope a:after {
+    content: " using pure css";
+}

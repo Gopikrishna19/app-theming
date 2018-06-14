@@ -1,41 +1,51 @@
 import Prism from 'prismjs';
 import React from 'react';
-import fs from 'fs';
+import {files} from './__raw';
 
-const strategies = {
-  'less-mixins': fs.readFileSync(__dirname + '/__raw/less-mixins.txt').toString(),
-  'pure-css': fs.readFileSync(__dirname + '/__raw/pure-css.txt').toString(),
-  'sass-hoc': fs.readFileSync(__dirname + '/__raw/sass-hoc.txt').toString(),
-  'sass-mixins': fs.readFileSync(__dirname + '/__raw/sass-mixins.txt').toString()
+const getFileContent = (strategy, file) => files[`${strategy}-${file}`];
+const decorate = (string, language) => Prism.highlight(string, Prism.languages[language], language);
+const getHTML = (strategy, file, language) => ({__html: decorate(getFileContent(strategy, file), language)});
+
+const strategies = ['less-mixins', 'pure-css', 'sass-hoc', 'sass-mixins']
+  .reduce((object, strategy) => Object.assign(object, {
+    [strategy]: {
+      component: getHTML(strategy, 'component', 'javascript'),
+      baseline: getHTML(strategy, 'baseline', 'css'),
+      usage: getHTML(strategy, 'usage', 'css')
+    }
+  }), {});
+
+const fileExtensions = {
+  'less-mixins': 'less',
+  'pure-css': 'css',
+  'sass-hoc': 'scss',
+  'sass-mixins': 'scss'
 };
-
-const component = {__html: Prism.highlight(fs.readFileSync(__dirname + '/__raw/react-component.txt').toString(), Prism.languages.javascript, 'javascript')};
-const styleUsage = {__html: Prism.highlight(fs.readFileSync(__dirname + '/__raw/style-usage.txt').toString(), Prism.languages.css, 'css')};
 
 export const StrategyPrinter = props =>
   <table>
     <thead>
       <tr>
-        <th>Strategy baseline</th>
-        <th>Usage</th>
-        <th>Component</th>
+        <th>baseline.{fileExtensions[props.strategy]}</th>
+        <th>themed-link.{fileExtensions[props.strategy]}</th>
+        <th>ThemedLink.js</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
           <pre>
-            <code dangerouslySetInnerHTML={{__html: Prism.highlight(strategies[props.strategy], Prism.languages.css, 'css')}}/>
+            <code dangerouslySetInnerHTML={strategies[props.strategy].baseline}/>
           </pre>
         </td>
         <td>
           <pre>
-            <code dangerouslySetInnerHTML={styleUsage}/>
+            <code dangerouslySetInnerHTML={strategies[props.strategy].usage}/>
           </pre>
         </td>
         <td>
           <pre>
-            <code dangerouslySetInnerHTML={component}/>
+            <code dangerouslySetInnerHTML={strategies[props.strategy].component}/>
           </pre>
         </td>
       </tr>

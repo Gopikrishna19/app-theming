@@ -1,0 +1,7 @@
+import React from 'react';
+import styles from './themed-link.css';
+
+export const ThemedLink = () =>
+    <div className={styles.scope}>
+        <a href="#">Link component</a>
+    </div>;
